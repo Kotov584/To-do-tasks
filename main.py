@@ -1,17 +1,6 @@
 from os.path import exists
 from os import remove
 
-def get_tasks():
-    tasks = open('tasks.txt', 'r')
-    lines = tasks.readlines()
-    tasks.close()
-    
-    count = 0
-    
-    for line in lines:
-        print("{}: {}".format(count, line.strip()))
-        count += 1
-
 if not exists("tasks.txt"):  
     open('tasks.txt', 'x').close()    
 
@@ -41,7 +30,15 @@ while True:
         if not exists("done_tasks.txt"):  
             open('done_tasks.txt', 'x').close()   
 
-        get_tasks()
+        tasks = open('tasks.txt', 'r')
+        lines = tasks.readlines()
+        tasks.close()
+        
+        count = 0
+        
+        for line in lines:
+            print("{}: {}".format(count, line.strip()))
+            count += 1
 
         selectedTask = int(input("\r\nSelect task to be done by number: \r\n")) 
 
@@ -61,7 +58,15 @@ while True:
         print("You done this task successfully")
 
     if selectedTask == 4:  
-        get_tasks()
+        tasks = open('tasks.txt', 'r')
+        lines = tasks.readlines()
+        tasks.close()
+        
+        count = 0
+        
+        for line in lines:
+            print("{}: {}".format(count, line.strip()))
+            count += 1
 
         selectedTask = int(input("\r\nSelect task to be removed by number: \r\n")) 
 
@@ -77,7 +82,15 @@ while True:
         print("You removed this task successfully")
 
     if selectedTask == 5:
-        get_tasks()
+        tasks = open('tasks.txt', 'r')
+        lines = tasks.readlines()
+        tasks.close()
+        
+        count = 0
+        
+        for line in lines:
+            print("{}: {}".format(count, line.strip()))
+            count += 1
 
         selectedTask = int(input("\r\nSelect task to be edited by number: \r\n")) 
         newTaskName = input("Write new name for this task: \r\n")
