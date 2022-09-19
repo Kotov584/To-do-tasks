@@ -30,10 +30,10 @@ def task_actions(action):
 
     remove("tasks.txt")
 
+    f = open("tasks.txt", "a")
     for line in lines:
-        f = open("tasks.txt", "a")
         f.writelines(line) 
-        f.close() 
+    f.close() 
 
     print("You " + action + " this task successfully")
 
