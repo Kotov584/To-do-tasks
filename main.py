@@ -1,6 +1,42 @@
 from os.path import exists
 from os import remove
 
+def task_actions(action):
+    tasks = open('tasks.txt', 'r')
+    lines = tasks.readlines()
+    tasks.close()
+    
+    count = 0
+    
+    for line in lines:
+        print("{}: {}".format(count, line.strip()))
+        count += 1
+
+    selectedTask = int(input("\r\nSelect task to be done by number: \r\n")) 
+
+    if action == "done":
+        f = open("done_tasks.txt", "a")
+        f.writelines(lines[selectedTask]) 
+        f.close() 
+
+        lines.pop(selectedTask)
+    
+    if action == "removed":
+        lines.pop(selectedTask)
+    
+    if action == "edited":        
+        newTaskName = input("Write new name for this task: \r\n")
+        lines[selectedTask] = newTaskName
+
+    remove("tasks.txt")
+
+    for line in lines:
+        f = open("tasks.txt", "a")
+        f.writelines(line) 
+        f.close() 
+
+    print("You " + action + " this task successfully")
+
 if not exists("tasks.txt"):  
     open('tasks.txt', 'x').close()    
 
@@ -30,78 +66,10 @@ while True:
         if not exists("done_tasks.txt"):  
             open('done_tasks.txt', 'x').close()   
 
-        tasks = open('tasks.txt', 'r')
-        lines = tasks.readlines()
-        tasks.close()
-        
-        count = 0
-        
-        for line in lines:
-            print("{}: {}".format(count, line.strip()))
-            count += 1
-
-        selectedTask = int(input("\r\nSelect task to be done by number: \r\n")) 
-
-        f = open("done_tasks.txt", "a")
-        f.writelines(lines[selectedTask]) 
-        f.close() 
-
-        lines.pop(selectedTask)
-
-        remove("tasks.txt")
-
-        for line in lines:
-            f = open("tasks.txt", "a")
-            f.writelines(line) 
-            f.close() 
-
-        print("You done this task successfully")
+        task_actions("done")
 
     if selectedTask == 4:  
-        tasks = open('tasks.txt', 'r')
-        lines = tasks.readlines()
-        tasks.close()
-        
-        count = 0
-        
-        for line in lines:
-            print("{}: {}".format(count, line.strip()))
-            count += 1
-
-        selectedTask = int(input("\r\nSelect task to be removed by number: \r\n")) 
-
-        lines.pop(selectedTask)
-
-        remove("tasks.txt")
-
-        for line in lines:
-            f = open("tasks.txt", "a")
-            f.writelines(line) 
-            f.close() 
-
-        print("You removed this task successfully")
+        task_actions("removed")
 
     if selectedTask == 5:
-        tasks = open('tasks.txt', 'r')
-        lines = tasks.readlines()
-        tasks.close()
-        
-        count = 0
-        
-        for line in lines:
-            print("{}: {}".format(count, line.strip()))
-            count += 1
-
-        selectedTask = int(input("\r\nSelect task to be edited by number: \r\n")) 
-        newTaskName = input("Write new name for this task: \r\n")
-
-        lines[selectedTask] = newTaskName
-
-        remove("tasks.txt")
-
-        for line in lines:
-            f = open("tasks.txt", "a")
-            f.writelines(line) 
-            f.close() 
-
-        print("You edited this task successfully")
+        task_actions("edited")
