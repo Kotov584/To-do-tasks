@@ -61,6 +61,7 @@ while True:
     if selectedTask == 2:
         f = open("tasks.txt", "r")
         print("\r\nYour task list:\r\n" + f.read()) 
+        f.close()
 
     if selectedTask == 3:
         if not exists("done_tasks.txt"):  
