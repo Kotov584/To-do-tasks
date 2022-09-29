@@ -39,6 +39,9 @@ def task_actions(action):
 
 if not exists("tasks.txt"):  
     open('tasks.txt', 'x').close()    
+   
+if not exists("done_tasks.txt"):  
+    open('done_tasks.txt', 'x').close()   
 
 print("Welcome to simple console based To-do task application!\r\nAvailable options:\r\n")
 print("0 - To exit application\r\n1 - Create new task\r\n2 - Show creted tasks\r\n3 - Mark task as done\r\n4 - Remove task\r\n5 - Edit task name")
@@ -64,9 +67,6 @@ while True:
         f.close()
 
     if selectedTask == 3:
-        if not exists("done_tasks.txt"):  
-            open('done_tasks.txt', 'x').close()   
-
         task_actions("done")
 
     if selectedTask == 4:  
