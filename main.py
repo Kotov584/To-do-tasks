@@ -47,30 +47,31 @@ print("Welcome to simple console based To-do task application!\r\nAvailable opti
 print("0 - To exit application\r\n1 - Create new task\r\n2 - Show creted tasks\r\n3 - Mark task as done\r\n4 - Remove task\r\n5 - Edit task name")
  
 while True:
-    selectedTask = int(input("\r\nWrite your option: \r\n")) 
-    
-    if selectedTask == 0:
-        break
+  selectedTask = int(input("\r\nWrite your option: \r\n")) 
 
-    if selectedTask == 1: 
-        taskName = input("Write name for your new task:\r\n") 
+  match selectedTask:
+    case 0:
+      break
+      
+    case 1:
+      taskName = input("Write name for your new task:\r\n") 
 
-        f = open("tasks.txt", "a")
-        f.writelines(taskName + "\n") 
-        f.close()
+      f = open("tasks.txt", "a")
+      f.writelines(taskName + "\n") 
+      f.close()
 
-        print("New task has been created:\r\n" + taskName)
-
-    if selectedTask == 2:
-        f = open("tasks.txt", "r")
-        print("\r\nYour task list:\r\n" + f.read()) 
-        f.close()
-
-    if selectedTask == 3:
-        task_actions("done")
-
-    if selectedTask == 4:  
-        task_actions("removed")
-
-    if selectedTask == 5:
-        task_actions("edited")
+      print("New task has been created:\r\n" + taskName)
+      
+    case 2:
+      f = open("tasks.txt", "r")
+      print("\r\nYour task list:\r\n" + f.read()) 
+      f.close()
+      
+    case 3:
+      task_actions("done")
+      
+    case 4:
+      task_actions("removed")
+      
+    case 5:
+      task_actions("edited") 
